@@ -1,19 +1,83 @@
-Solarized - KDE Konsole Settings
+Solarized - KDE Color Schemes
 ======================================
 
 ### [See official homepage for full content](http://ethanschoonover.com/solarized)
 
 About
 -----
-Solarized terminal theme for KDE 4's Konsole terminal client. This was adapted
+
+Solarized themes for KDE Color Palette, Konsole and Kate. 
+
+Solarized Konsole Theme
+-----------------------
+
+* Solarized Dark.colorscheme
+* Solarized Light.colorscheme 
+These are Solarized terminal theme files for KDE 4's Konsole terminal client, by 
+https://github.com/phiggins
+
+This was adapted
 from the [Xresources file](https://github.com/altercation/solarized/blob/9f1ba40686ccbf54f10851d4f1a14830fa543ae9/xresources-colors-solarized/Xresources) from March 31, 2011 and so contains the same color 
 designations present there.
 
+Solarized Kate Theme
+--------------------
+
+* Solarized Dark.kateschema 
+* Solarized Light.kateschema
+* Solarized Dark.katesyntax
+* Solarized Light.katesyntax
+
+These files provide color themes and syntax highlighting for Kate editor.
+Kate is the embedded KDE editor used within Kdevelop, Kile, Kwrite, etc.
+So the color changes will be applicable to all KDE programs with editor
+components.
+
+The highlighting is "bare": It provides generic colors and does not handle various language highlightings.
+But you can choose Solarized colors for the languages you use with the KDE Color Chooser palette.
+
+Solarized KDE Color Palette
+---------------------------
+
+When you want to customize your highlighting, you will be presented with the color chooser
+window. It can also be executed as `kcolorchooser`.
+The "Solarized\_Colors" file provides a palette for the `kcolorchooser`
+
 Installation
 ------------
-1. Copy the colorscheme files to ~/.kde4/share/apps/konsole/. On your system this may be ~/.kde/ instead of ~/.kde4/.
+
+**Automatic installation**
+
+1. Run the provided `install.sh` script. It will install the Color palette, Konsole and Kate color scheme If your KDE configurations reside in ~/.kde instead of ~/.kde4, modify the script accordingly
 2. Open Konsole and select Settings -> Configure Profiles -> Edit Profile -> Appearance, then select either of the Solarized themes.
 3. Click OK, then OK again, and the Solarized settings should have taken effect.
+4. Open Kate and select Settings -> Configure Kate -> Editor Component -> Fonts & Colors
+5. From the box named "Default schema for Kate", select one of the Solarized Themes
+6. Click OK, and you will be using Solarized themes for kate
+7. For any other KDE program with embedded text editor (Kdevelop, Kile), go to their settings window and select Solarized themes as default color schema.
+
+**Manual installation**
+
+On your system paths may be under ~/.kde/ instead of ~/.kde4/.
+
+1. Copy the Konsole colorscheme (\*.colorscheme) files to ~/.kde4/share/apps/konsole/. 
+2. Open Konsole and select Settings -> Configure Profiles -> Edit Profile -> Appearance, then select either of the Solarized themes.
+3. Click OK, then OK again, and the Solarized settings should have taken effect.
+4. Copy the KDE Color Chooser Palette (`Solarized_Colors) to ~/.kde4/share/config/colors/
+5. Concatenate Kate color schema files (\*.kateschema) at the end of the ~/.kde4/share/config/kateschemarc file
+
+        cat ./"Solarized Dark.kateschema" >> ~/.kde4/share/config/kateschemarc
+        cat ./"Solarized Light.kateschema" >> ~/.kde4/share/config/kateschemarc
+
+6. Concatenate Kate syntax highlighting files (\*.katesyntax) at the end of the ~/.kde4/share/config/katesyntaxhighlightingrc file
+
+        cat ./"Solarized Dark.katesyntax" >> ~/.kde4/share/config/katesyntaxhighlightingrc
+        cat ./"Solarized Light.katesyntax" >> ~/.kde4/share/config/katesyntaxhighlightingrc
+
+7. Open Kate and select Settings -> Configure Kate -> Editor Component -> Fonts & Colors
+8. From the box named "Default schema for Kate", select one of the Solarized Themes
+9. Click OK, and you will be using Solarized themes for kate
+10. For any other KDE program with embedded text editor (Kdevelop, Kile), go to their settings window and select Solarized themes as default color schema.
 
 The Values
 ----------

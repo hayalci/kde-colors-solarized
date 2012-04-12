@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # KDE Color Palette
-cp ./Solarized_Colors ~/.kde4/share/config/Solarized\ Colors
+cp ./Solarized_Colors ~/.kde4/share/config/colors/Solarized\ Colors
 
 # Konsole (yakuake, etc.) color scheme
 cp ./"Solarized Dark.colorscheme" ~/.kde4/share/apps/konsole/
