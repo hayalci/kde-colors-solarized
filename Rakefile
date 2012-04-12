@@ -36,7 +36,7 @@ SOLARIZED = {
   :green    => [133,  153,  0   ],
 }
 
-COMMON = {
+KONSOLECOMMON = {
   'Color0'            => SOLARIZED[:base02],
   'Color0Intense'     => SOLARIZED[:base03],
   'Color1'            => SOLARIZED[:red],
@@ -55,31 +55,98 @@ COMMON = {
   'Color7Intense'     => SOLARIZED[:base3],
 }
 
-task :light do
-  colors = COMMON.merge(
+KATESCHEMACOMMON = {
+  'Color Highlighted Bracket'   => SOLARIZED[:orange],
+  'Color MarkType1'             => SOLARIZED[:base2],
+  'Color MarkType2'             => SOLARIZED[:red],
+  'Color MarkType3'             => SOLARIZED[:orange],
+  'Color MarkType4'             => SOLARIZED[:green],
+  'Color MarkType5'             => SOLARIZED[:yellow],
+  'Color MarkType6'             => SOLARIZED[:blue],
+  'Color MarkType7'             => SOLARIZED[:violet],
+  'Color Selection'             => SOLARIZED[:base0],
+  'Color Spelling Mistake Line' => SOLARIZED[:red],
+  'Color Tab Marker'            => SOLARIZED[:base01],
+  'Color Template Background'   => SOLARIZED[:base0],
+  'Color Template Editable Placeholder'             => SOLARIZED[:base01],
+  'Color Template Focused Editable Placeholder'     => SOLARIZED[:base00],
+  'Color Template Not Editable Placeholder'         => SOLARIZED[:base02],
+  'Color Word Wrap Marker'      => SOLARIZED[:base01]
+  #Font=Monospace,10,-1,5,50,0,0,0,0,0
+}
+
+KATESYNTAXCOMMON = {
+  'Alert'           => { 'norm' => SOLARIZED[:red], 'bold' => "1" },
+  'Base-N Integer'  => { 'norm' => SOLARIZED[:cyan] },
+  'Character'       => { 'norm' => SOLARIZED[:cyan] },
+  'Data Type'       => { 'norm' => SOLARIZED[:yellow] },
+  'Decimal/Value'   => { 'norm' => SOLARIZED[:cyan] },
+  'Error'           => { 'norm' => SOLARIZED[:red], 'underline' => "1" },
+  'Floating Point'  => { 'norm' => SOLARIZED[:cyan] },
+  'Function'        => { 'norm' => SOLARIZED[:blue] },
+  'Keyword'         => { 'norm' => SOLARIZED[:green], 'bold' => "1" },
+  'Normal'          => { 'norm' => SOLARIZED[:base0] },
+  'Others'          => { 'norm' => SOLARIZED[:orange] },
+  'Region Marker'   => { 'norm' => SOLARIZED[:violet] },
+  'String'          => { 'norm' => SOLARIZED[:cyan] }
+}
+
+task :konsolelight do
+  colors = KONSOLECOMMON.merge(
     'Background'        => SOLARIZED[:base3],
     'BackgroundIntense' => SOLARIZED[:base1],
     'Foreground'        => SOLARIZED[:base0],
-    'ForegroundIntense' => SOLARIZED[:base01],
+    'ForegroundIntense' => SOLARIZED[:base01]
   )
 
-  write_colorscheme("Solarized Light", colors)
+  write_konsole_colorscheme("Solarized Light", colors)
 end
 
-task :dark do
-  colors = COMMON.merge(
+task :konsoledark do
+  colors = KONSOLECOMMON.merge(
     'Background'        => SOLARIZED[:base03],
     'BackgroundIntense' => SOLARIZED[:base01],
     'Foreground'        => SOLARIZED[:base00],
-    'ForegroundIntense' => SOLARIZED[:base1],
+    'ForegroundIntense' => SOLARIZED[:base1]
   )
 
-  write_colorscheme("Solarized Dark", colors)
+  write_konsole_colorscheme("Solarized Dark", colors)
 end
 
-task :default => [:dark, :light]
+task :katedark do
+  colors = KATESCHEMACOMMON.merge(
+    'Color Background'        => SOLARIZED[:base03],
+    'Color Highlighted Line'  => SOLARIZED[:base02],
+    'Color Icon Bar'          => SOLARIZED[:base02],
+    'Color Line Number'       => SOLARIZED[:base01]
+  )
+  syntax = KATESYNTAXCOMMON.merge(
+    'Comment' => { 'norm' => SOLARIZED[:base01], 'italic' => "1" }
+  )
+  write_kate_colorscheme("Solarized Dark", colors, syntax)
+end
 
-def write_colorscheme(colorscheme, colors)
+task :katelight do
+  colors = KATESCHEMACOMMON.merge(
+    'Color Background'        => SOLARIZED[:base3],
+    'Color Highlighted Line'  => SOLARIZED[:base2],
+    'Color Icon Bar'          => SOLARIZED[:base2],
+    'Color Line Number'       => SOLARIZED[:base1]
+  )
+  syntax = KATESYNTAXCOMMON.merge(
+    'Comment' => { 'norm' => SOLARIZED[:base1], 'italic' => "1" }
+  )
+  write_kate_colorscheme("Solarized Light", colors, syntax)
+end
+
+task :kcolor do
+  colors = SOLARIZED
+  write_kcolor_scheme("Solarized", colors)
+end
+
+task :default => [:konsoledark, :konsolelight, :katedark, :katelight, :kcolor]
+
+def write_konsole_colorscheme(colorscheme, colors)
   File.open("#{colorscheme}.colorscheme", "w") do |f|
     colors.each do |name, rgb|
       f << [
@@ -93,7 +160,63 @@ def write_colorscheme(colorscheme, colors)
     f << [
       "[General]",
       "Description=#{colorscheme}",
-      "Opacity=1"
+      "Opacity=1",
+      ""
     ].join("\n")
+  end
+end
+
+def write_kcolor_scheme(colorscheme, colors)
+  File.open("#{colorscheme}_Colors", "w") do |f|
+    f << "KDE RGB Palette\n#\n"
+    colors.each do |name, rgb|
+      f << rgb.join(" ") << "\t#{name}" << "\n"
+    end
+  end
+end
+
+def r2h (rgb)
+  "ff%02x%02x%02x" % rgb
+end
+
+def write_kate_colorscheme(colorscheme, colors, syntax)
+
+  File.open("#{colorscheme}.kateschema", "w") do |f|
+    f << "[#{colorscheme}]\n"
+
+    colors.each do |name, rgb|
+      f << "#{name} = #{rgb.join(",")}\n"
+
+    end
+    f << "\n"
+
+  end
+
+  File.open("#{colorscheme}.katesyntax", "w") do |s|
+    s << "[Default Item Styles - Schema #{colorscheme}]\n"
+
+    syntax.each do |name, data|
+      s << "#{name} = "
+      s << [
+        r2h(data['norm']),
+        r2h(colors['Color Background']),
+        data.has_key?('bold') ? "1" : "",
+        data.has_key?('italic') ? "1" : "",
+        data.has_key?('underline') ? "1" : "",
+        data.has_key?('strike') ? "1" : "",  ## XXX
+        "", # regular background
+        r2h( data.has_key?('bgsel') ? data['bgsel'] : data['norm'] ), # selected bacground
+        "",
+        "",
+        "---"
+      ].join(",")
+      s << "\n"
+    end
+
+  #  s << [
+  #    "[KateSchema]",
+  #    "full schema=true",
+  #    "schema=#{colorscheme}"
+  #  ].join("\n")
   end
 end
