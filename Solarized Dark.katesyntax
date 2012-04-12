@@ -1,0 +1,15 @@
+[Default Item Styles - Schema Solarized Dark]
+Base-N Integer = ff2aa198,ff002b36,,,,,,ff2aa198,,,---
+Region Marker = ff6c71c4,ff002b36,,,,,,ff6c71c4,,,---
+Function = ff268bd2,ff002b36,,,,,,ff268bd2,,,---
+Alert = ffdc322f,ff002b36,1,,,,,ffdc322f,,,---
+Character = ff2aa198,ff002b36,,,,,,ff2aa198,,,---
+String = ff2aa198,ff002b36,,,,,,ff2aa198,,,---
+Comment = ff586e75,ff002b36,,1,,,,ff586e75,,,---
+Data Type = ffb58900,ff002b36,,,,,,ffb58900,,,---
+Keyword = ff859900,ff002b36,1,,,,,ff859900,,,---
+Error = ffdc322f,ff002b36,,,1,,,ffdc322f,,,---
+Normal = ff839496,ff002b36,,,,,,ff839496,,,---
+Floating Point = ff2aa198,ff002b36,,,,,,ff2aa198,,,---
+Others = ffcb4b16,ff002b36,,,,,,ffcb4b16,,,---
+Decimal/Value = ff2aa198,ff002b36,,,,,,ff2aa198,,,---

@@ -1,0 +1,22 @@
+[Solarized Light]
+Color Template Editable Placeholder = 88,110,117
+Color MarkType1 = 238,232,213
+Color MarkType2 = 220,50,47
+Color MarkType3 = 203,75,22
+Color MarkType4 = 133,153,0
+Color MarkType5 = 181,137,0
+Color MarkType6 = 38,139,210
+Color MarkType7 = 108,113,196
+Color Spelling Mistake Line = 220,50,47
+Color Highlighted Line = 238,232,213
+Color Line Number = 147,161,161
+Color Tab Marker = 88,110,117
+Color Template Background = 131,148,150
+Color Selection = 131,148,150
+Color Background = 253,246,227
+Color Icon Bar = 238,232,213
+Color Highlighted Bracket = 203,75,22
+Color Template Focused Editable Placeholder = 101,123,131
+Color Template Not Editable Placeholder = 7,54,66
+Color Word Wrap Marker = 88,110,117
+
