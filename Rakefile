@@ -56,22 +56,17 @@ KONSOLECOMMON = {
 }
 
 KATESCHEMACOMMON = {
-  'Color Highlighted Bracket'   => SOLARIZED[:orange],
-  'Color MarkType1'             => SOLARIZED[:base2],
-  'Color MarkType2'             => SOLARIZED[:red],
-  'Color MarkType3'             => SOLARIZED[:orange],
+  'Color MarkType2'             => SOLARIZED[:blue],
+  'Color MarkType3'             => SOLARIZED[:violet],
   'Color MarkType4'             => SOLARIZED[:green],
-  'Color MarkType5'             => SOLARIZED[:yellow],
-  'Color MarkType6'             => SOLARIZED[:blue],
-  'Color MarkType7'             => SOLARIZED[:violet],
-  'Color Selection'             => SOLARIZED[:base0],
+  'Color MarkType5'             => SOLARIZED[:cyan],
+  'Color MarkType6'             => SOLARIZED[:orange],
+  'Color MarkType7'             => SOLARIZED[:red],
   'Color Spelling Mistake Line' => SOLARIZED[:red],
-  'Color Tab Marker'            => SOLARIZED[:base01],
   'Color Template Background'   => SOLARIZED[:base0],
   'Color Template Editable Placeholder'             => SOLARIZED[:base01],
   'Color Template Focused Editable Placeholder'     => SOLARIZED[:base00],
   'Color Template Not Editable Placeholder'         => SOLARIZED[:base02],
-  'Color Word Wrap Marker'      => SOLARIZED[:base01]
   #Font=Monospace,10,-1,5,50,0,0,0,0,0
 }
 
@@ -85,7 +80,6 @@ KATESYNTAXCOMMON = {
   'Floating Point'  => { 'norm' => SOLARIZED[:cyan] },
   'Function'        => { 'norm' => SOLARIZED[:blue] },
   'Keyword'         => { 'norm' => SOLARIZED[:green], 'bold' => "1" },
-  'Normal'          => { 'norm' => SOLARIZED[:base0] },
   'Others'          => { 'norm' => SOLARIZED[:orange] },
   'Region Marker'   => { 'norm' => SOLARIZED[:violet] },
   'String'          => { 'norm' => SOLARIZED[:cyan] }
@@ -116,12 +110,18 @@ end
 task :katedark do
   colors = KATESCHEMACOMMON.merge(
     'Color Background'        => SOLARIZED[:base03],
+    'Color Highlighted Bracket' => SOLARIZED[:base03],
     'Color Highlighted Line'  => SOLARIZED[:base02],
     'Color Icon Bar'          => SOLARIZED[:base02],
-    'Color Line Number'       => SOLARIZED[:base01]
+    'Color Selection'         => SOLARIZED[:base02],
+    'Color Line Number'       => SOLARIZED[:base01],
+    'Color Tab Marker'        => SOLARIZED[:base01],
+    'Color Word Wrap Marker'  => SOLARIZED[:base01],
+    'Color MarkType1'         => SOLARIZED[:base00]
   )
   syntax = KATESYNTAXCOMMON.merge(
-    'Comment' => { 'norm' => SOLARIZED[:base01], 'italic' => "1" }
+    'Comment' => { 'norm' => SOLARIZED[:base01], 'italic' => "1" },
+    'Normal'  => { 'norm' => SOLARIZED[:base0], 'sel' => SOLARIZED[:base1], 'bgsel' => SOLARIZED[:base02] }
   )
   write_kate_colorscheme("Solarized Dark", colors, syntax)
 end
@@ -129,12 +129,18 @@ end
 task :katelight do
   colors = KATESCHEMACOMMON.merge(
     'Color Background'        => SOLARIZED[:base3],
+    'Color Highlighted Bracket' => SOLARIZED[:base3],
     'Color Highlighted Line'  => SOLARIZED[:base2],
     'Color Icon Bar'          => SOLARIZED[:base2],
-    'Color Line Number'       => SOLARIZED[:base1]
+    'Color Selection'         => SOLARIZED[:base2],
+    'Color Line Number'       => SOLARIZED[:base1],
+    'Color Tab Marker'        => SOLARIZED[:base1],
+    'Color Word Wrap Marker'  => SOLARIZED[:base1],
+    'Color MarkType1'         => SOLARIZED[:base0]
   )
   syntax = KATESYNTAXCOMMON.merge(
-    'Comment' => { 'norm' => SOLARIZED[:base1], 'italic' => "1" }
+    'Comment' => { 'norm' => SOLARIZED[:base1], 'italic' => "1" },
+    'Normal'  => { 'norm' => SOLARIZED[:base00], 'sel' => SOLARIZED[:base01], 'bgsel' => SOLARIZED[:base2] }
   )
   write_kate_colorscheme("Solarized Light", colors, syntax)
 end
@@ -185,7 +191,7 @@ def write_kate_colorscheme(colorscheme, colors, syntax)
     f << "[#{colorscheme}]\n"
 
     colors.each do |name, rgb|
-      f << "#{name} = #{rgb.join(",")}\n"
+      f << "#{name}=#{rgb.join(",")}\n"
 
     end
     f << "\n"
@@ -196,16 +202,16 @@ def write_kate_colorscheme(colorscheme, colors, syntax)
     s << "[Default Item Styles - Schema #{colorscheme}]\n"
 
     syntax.each do |name, data|
-      s << "#{name} = "
+      s << "#{name}="
       s << [
         r2h(data['norm']),
-        r2h(colors['Color Background']),
+        r2h( data.has_key?('sel') ? data['sel'] : colors['Color Background'] ),
         data.has_key?('bold') ? "1" : "",
         data.has_key?('italic') ? "1" : "",
         data.has_key?('underline') ? "1" : "",
         data.has_key?('strike') ? "1" : "",  ## XXX
         "", # regular background
-        r2h( data.has_key?('bgsel') ? data['bgsel'] : data['norm'] ), # selected bacground
+        r2h( data.has_key?('bgsel') ? data['bgsel'] : data['norm'] ), # selected background
         "",
         "",
         "---"
