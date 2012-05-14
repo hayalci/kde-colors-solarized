@@ -13,6 +13,7 @@ Solarized Konsole Theme
 
 * Solarized Dark.colorscheme
 * Solarized Light.colorscheme 
+
 These are Solarized terminal theme files for KDE 4's Konsole terminal client, by 
 https://github.com/phiggins
 
@@ -48,7 +49,7 @@ Installation
 
 **Automatic installation**
 
-1. Run the provided `install.sh` script. It will install the Color palette, Konsole and Kate color scheme If your KDE configurations reside in ~/.kde instead of ~/.kde4, modify the script accordingly
+1. Run the provided `install.sh` script. It will install the Color palette, Konsole and Kate color scheme 
 2. Open Konsole and select Settings -> Configure Profiles -> Edit Profile -> Appearance, then select either of the Solarized themes.
 3. Click OK, then OK again, and the Solarized settings should have taken effect.
 4. Open Kate and select Settings -> Configure Kate -> Editor Component -> Fonts & Colors
