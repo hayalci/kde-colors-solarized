@@ -111,7 +111,7 @@ task :katedark do
   colors = KATESCHEMACOMMON.merge(
     'Color Background'        => SOLARIZED[:base03],
     'Color Highlighted Bracket' => SOLARIZED[:base03],
-    'Color Highlighted Line'  => SOLARIZED[:base02],
+    'Color Highlighted Line'  => SOLARIZED[:base03],
     'Color Icon Bar'          => SOLARIZED[:base02],
     'Color Selection'         => SOLARIZED[:base02],
     'Color Line Number'       => SOLARIZED[:base01],
@@ -130,7 +130,7 @@ task :katelight do
   colors = KATESCHEMACOMMON.merge(
     'Color Background'        => SOLARIZED[:base3],
     'Color Highlighted Bracket' => SOLARIZED[:base3],
-    'Color Highlighted Line'  => SOLARIZED[:base2],
+    'Color Highlighted Line'  => SOLARIZED[:base3],
     'Color Icon Bar'          => SOLARIZED[:base2],
     'Color Selection'         => SOLARIZED[:base2],
     'Color Line Number'       => SOLARIZED[:base1],
