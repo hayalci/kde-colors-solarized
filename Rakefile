@@ -88,9 +88,9 @@ KATESYNTAXCOMMON = {
 task :konsolelight do
   colors = KONSOLECOMMON.merge(
     'Background'        => SOLARIZED[:base3],
-    'BackgroundIntense' => SOLARIZED[:base1],
-    'Foreground'        => SOLARIZED[:base0],
-    'ForegroundIntense' => SOLARIZED[:base01]
+    'BackgroundIntense' => SOLARIZED[:base2],
+    'Foreground'        => SOLARIZED[:base00],
+    'ForegroundIntense' => SOLARIZED[:base01],
   )
 
   write_konsole_colorscheme("Solarized Light", colors)
@@ -99,9 +99,9 @@ end
 task :konsoledark do
   colors = KONSOLECOMMON.merge(
     'Background'        => SOLARIZED[:base03],
-    'BackgroundIntense' => SOLARIZED[:base01],
-    'Foreground'        => SOLARIZED[:base00],
-    'ForegroundIntense' => SOLARIZED[:base1]
+    'BackgroundIntense' => SOLARIZED[:base02],
+    'Foreground'        => SOLARIZED[:base0],
+    'ForegroundIntense' => SOLARIZED[:base1],
   )
 
   write_konsole_colorscheme("Solarized Dark", colors)
