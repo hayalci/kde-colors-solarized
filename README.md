@@ -64,7 +64,7 @@ On your system paths may be under ~/.kde/ instead of ~/.kde4/.
 1. Copy the Konsole colorscheme (\*.colorscheme) files to ~/.kde4/share/apps/konsole/. 
 2. Open Konsole and select Settings -> Configure Profiles -> Edit Profile -> Appearance, then select either of the Solarized themes.
 3. Click OK, then OK again, and the Solarized settings should have taken effect.
-4. Copy the KDE Color Chooser Palette (`Solarized_Colors) to ~/.kde4/share/config/colors/
+4. Copy the KDE Color Chooser Palette (`Solarized_Colors`) to ~/.kde4/share/config/colors/
 5. Concatenate Kate color schema files (\*.kateschema) at the end of the ~/.kde4/share/config/kateschemarc file
 
         cat ./"Solarized Dark.kateschema" >> ~/.kde4/share/config/kateschemarc
